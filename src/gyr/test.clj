@@ -30,14 +30,27 @@
 
 (defn describe-ng-fn [options body]
   (let [options (merge describe-default-options options)
-        {:keys [module spec inject]} options
+        {:keys [module spec inject provides]} options
         {:keys [injs ivars bindings]} (describe-parse-injects spec inject)
         rm (describe-roots-map spec ivars)]
     (describe-fn
-     (dissoc options :inject :module)
+     (dissoc options :inject :module :provides)
      (apply list
             (l 'js/beforeEach
                     (l 'js/module (str module)))
+
+            (when (not-empty provides)
+              (l 'js/beforeEach
+                 (l 'js/module
+                    (l 'array
+                       "$provide"
+                       (concat (l 'fn ['$provide])
+                               (map
+                                  (fn [[service mock]]
+                                    (l '.value 'js/$provide (str service) mock))
+                                  provides)
+                               (l nil)
+                               )))))
 
             (l 'js/beforeEach
                (l 'js/inject
