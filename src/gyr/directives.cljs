@@ -1,5 +1,4 @@
 (ns gyr.directives
-  (:require-macros [purnam.core :as j])
   (:use-macros [purnam.core :only [obj ! def.n]]
                [gyr.core :only [def.module def.directive]]))
 

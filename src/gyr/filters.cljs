@@ -1,6 +1,5 @@
 (ns gyr.filters
-  (:require [goog.object :as o]
-            [goog.array :as a]
+  (:require [goog.array :as a]
             [purnam.native.functions :as j])
   (:use-macros [purnam.core :only [obj arr ! def.n]]
                [gyr.core :only [def.module def.filter]]))

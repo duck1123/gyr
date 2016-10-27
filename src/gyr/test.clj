@@ -1,6 +1,5 @@
 (ns gyr.test
-  (:require [clojure.string :as s]
-            [purnam.common.scope :refer [change-roots-map]]
+  (:require [purnam.common.scope :refer [change-roots-map]]
             [purnam.test.jasmine :refer [describe-fn it-preprocess it-fn
                                         describe-default-options
                                         describe-roots-map]]))
